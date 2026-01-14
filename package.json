@@ -2,6 +2,13 @@
   "name": "@wjmpantig/docusaurus-plugin-dbml",
   "version": "1.0.0",
   "type": "module",
+  "author": {
+    "name": "Winfred Jester Pantig <hello@winfred.me> (https://winfred.me)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wjmpantig/docusaurus-plugin-dbml.git"
+  },
   "files": [
     "dist",
     "README.md"
