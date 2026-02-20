@@ -48,6 +48,7 @@ export default defineConfig({
 				"@xyflow/react/dist/style.css",
 				'path',
 				'url',
+				'@theme-original/MDXComponents',
 			],
 			output: {
 				globals: {
