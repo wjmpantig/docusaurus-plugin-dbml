@@ -46,6 +46,8 @@ export default defineConfig({
 				"@wjmpantig/react-dbml-renderer/style.css",
 				"@xyflow/react",
 				"@xyflow/react/dist/style.css",
+				'path',
+				'url',
 			],
 			output: {
 				globals: {
