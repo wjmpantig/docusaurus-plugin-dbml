@@ -2,6 +2,8 @@
 
 This plugin allows you to render Dbml diagrams in your Docusaurus site.
 
+![Docusaurus Dbml Renderer Preview](./assets/preview.gif)
+
 ## Installation
 
 ```bash
