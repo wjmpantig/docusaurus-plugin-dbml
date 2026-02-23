@@ -50,6 +50,7 @@ export default defineConfig({
 				'url',
 				'@theme/Tabs',
 				'@theme/TabItem',
+				'@docusaurus/BrowserOnly',
 				],
 			output: {
 				exports: "named",

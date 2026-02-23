@@ -28,3 +28,42 @@ export default function config() {
   };
 }
 ```
+
+## Options
+
+### Preview height
+
+The default preview height is `500px`. You can change it globally by passing options to `remarkDbmlToComponent`:
+
+```js
+docs: {
+  remarkPlugins: [[remarkDbmlToComponent, { height: 400 }]],
+}
+```
+
+You can also override the height per diagram using the code fence meta string:
+
+````md
+```dbml height=600
+Table users {
+  id integer [primary key]
+  name varchar
+}
+```
+````
+
+Both numbers (interpreted as `px`) and CSS string values are accepted:
+
+```js
+// numbers
+remarkPlugins: [[remarkDbmlToComponent, { height: 400 }]]
+
+// CSS strings
+remarkPlugins: [[remarkDbmlToComponent, { height: '50vh' }]]
+```
+
+````md
+```dbml height=50vh
+...
+```
+````

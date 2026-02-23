@@ -1,3 +1,12 @@
+declare module '@docusaurus/BrowserOnly' {
+  import type { ReactNode } from 'react';
+  export interface BrowserOnlyProps {
+    children: () => ReactNode;
+    fallback?: ReactNode;
+  }
+  export default function BrowserOnly(props: BrowserOnlyProps): JSX.Element;
+}
+
 declare module '@theme/Tabs' {
   import type { ReactNode } from 'react';
   export interface TabsProps {

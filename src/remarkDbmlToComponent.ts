@@ -1,7 +1,34 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { visit } from "unist-util-visit";
 
-export default function remarkDbmlToComponent() {
+export interface RemarkDbmlOptions {
+  height?: number | string;
+}
+
+function heightAttribute(height: number | string): any {
+  if (typeof height === 'number') {
+    return {
+      type: "mdxJsxAttribute",
+      name: "height",
+      value: {
+        type: "mdxJsxAttributeValueExpression",
+        value: String(height),
+        data: {
+          estree: {
+            type: "Program",
+            body: [{ type: "ExpressionStatement", expression: { type: "Literal", value: height, raw: String(height) } }],
+            sourceType: "module"
+          }
+        }
+      }
+    };
+  }
+  return { type: "mdxJsxAttribute", name: "height", value: height };
+}
+
+export default function remarkDbmlToComponent(options: RemarkDbmlOptions = {}) {
+  const globalHeight = options.height ?? 500;
+
   return (tree: any) => {
     let hasDbml = false;
 
@@ -13,6 +40,13 @@ export default function remarkDbmlToComponent() {
 
       hasDbml = true;
       const dbml = node.value ?? "";
+
+      const metaMatch = node.meta ? node.meta.match(/height=(\S+)/)?.[1] : undefined;
+      let height: number | string = globalHeight;
+      if (metaMatch !== undefined) {
+        const num = Number(metaMatch);
+        height = Number.isNaN(num) ? metaMatch : num;
+      }
 
       parent.children[index] = {
         type: "mdxJsxFlowElement",
@@ -51,6 +85,7 @@ export default function remarkDbmlToComponent() {
               }
             },
           },
+          heightAttribute(height),
         ],
         children: [],
       };
