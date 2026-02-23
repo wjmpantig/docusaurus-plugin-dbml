@@ -1,6 +1,6 @@
 {
   "name": "@wjmpantig/docusaurus-plugin-dbml",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "type": "module",
   "author": {
     "name": "Winfred Jester Pantig <hello@winfred.me> (https://winfred.me)"
@@ -56,7 +56,7 @@
   },
   "peerDependencies": {
     "@dbml/core": "^5.1.0",
-    "@wjmpantig/react-dbml-renderer": "^1.0.1",
+    "@wjmpantig/react-dbml-renderer": "^1.0.3",
     "@xyflow/react": "^12.9.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
