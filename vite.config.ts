@@ -48,6 +48,7 @@ export default defineConfig({
 				"@xyflow/react/dist/style.css",
 				'path',
 				'url',
+				'@theme/CodeBlock',
 				'@theme/Tabs',
 				'@theme/TabItem',
 				'@docusaurus/BrowserOnly',

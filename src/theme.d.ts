@@ -7,6 +7,17 @@ declare module '@docusaurus/BrowserOnly' {
   export default function BrowserOnly(props: BrowserOnlyProps): JSX.Element;
 }
 
+declare module '@theme/CodeBlock' {
+  import type { ReactNode } from 'react';
+  export interface CodeBlockProps {
+    children: ReactNode;
+    language?: string;
+    title?: string;
+    showLineNumbers?: boolean;
+  }
+  export default function CodeBlock(props: CodeBlockProps): JSX.Element;
+}
+
 declare module '@theme/Tabs' {
   import type { ReactNode } from 'react';
   export interface TabsProps {
