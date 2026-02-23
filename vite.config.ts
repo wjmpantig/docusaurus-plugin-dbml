@@ -24,7 +24,7 @@ export default defineConfig({
 		lib: {
 			entry: {
 				index: resolve(__dirname, "src/index.ts"),
-				"theme/MDXComponents": resolve(__dirname, "src/theme/MDXComponents.ts"),
+				DbmlDiagram: resolve(__dirname, "src/DbmlDiagram.tsx"),
 			},
 			name: "DocusaurusPluginDbml",
 			// the proper extensions will be added
@@ -48,9 +48,9 @@ export default defineConfig({
 				"@xyflow/react/dist/style.css",
 				'path',
 				'url',
-				'@theme-original/MDXComponents',
-			],
+				],
 			output: {
+				exports: "named",
 				globals: {
 					react: "React",
 					"react-dom": "ReactDOM",

@@ -21,10 +21,10 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./theme/MDXComponents": {
-      "types": "./dist/types/theme/MDXComponents.d.ts",
-      "import": "./dist/theme/MDXComponents.js",
-      "require": "./dist/theme/MDXComponents.cjs"
+    "./DbmlDiagram": {
+      "types": "./dist/types/DbmlDiagram.d.ts",
+      "import": "./dist/DbmlDiagram.js",
+      "require": "./dist/DbmlDiagram.cjs"
     }
   },
   "scripts": {
