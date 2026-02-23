@@ -39,6 +39,7 @@ const config: Config = {
     [
       'classic',
       {
+        debug: true,
         docs: {
           sidebarPath: './sidebars.ts',
           // Please change this to your repo.
@@ -68,8 +69,15 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
 
-  plugins: [docusaurusPluginDbml],
+  plugins: [
+    
+    '@wjmpantig/docusaurus-plugin-dbml',
+  ],
 
   themeConfig: {
     // Replace with your project's social card
