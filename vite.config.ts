@@ -48,6 +48,8 @@ export default defineConfig({
 				"@xyflow/react/dist/style.css",
 				'path',
 				'url',
+				'@theme/Tabs',
+				'@theme/TabItem',
 				],
 			output: {
 				exports: "named",
