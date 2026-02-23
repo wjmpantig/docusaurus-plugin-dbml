@@ -10,6 +10,16 @@ export default function DbmlDiagram({ dbml }: { dbml: string }) {
   // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setMounted(true); }, []);
 
+  useEffect(() => {
+    const handler = (e: ErrorEvent) => {
+      if (e.message === 'ResizeObserver loop completed with undelivered notifications.') {
+        e.stopImmediatePropagation();
+      }
+    };
+    window.addEventListener('error', handler);
+    return () => window.removeEventListener('error', handler);
+  }, []);
+
   return (
     <Tabs>
       <TabItem value="preview" label="Preview" default>
