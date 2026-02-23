@@ -13,12 +13,12 @@ npm install @wjmpantig/docusaurus-plugin-dbml @wjmpantig/react-dbml-renderer @db
 ```js
 // docusaurus.config.ts
 
-import { remarkDbmlToComponent, plugin as docusaurusPluginDbml } from '@wjmpantig/docusaurus-plugin-dbml';
+import { remarkDbmlToComponent } from '@wjmpantig/docusaurus-plugin-dbml';
 
 export default function config() {
   return {
     plugins: [
-      [docusaurusPluginDbml], //add me
+      ['@wjmpantig/docusaurus-plugin-dbml'], //add me
     ],
     docs: {
       remarkPlugins: [remarkDbmlToComponent], // add me
