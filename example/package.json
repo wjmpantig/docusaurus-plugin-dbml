@@ -15,14 +15,13 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@dbml/core": "^5.4.1",
+    "@dbml/core": "^10.1.1",
     "@docusaurus/core": "3.9.2",
-    "@docusaurus/plugin-debug": "^3.9.2",
     "@docusaurus/preset-classic": "3.9.2",
     "@docusaurus/theme-mermaid": "^3.9.2",
     "@mdx-js/react": "^3.0.0",
-    "@wjmpantig/docusaurus-plugin-dbml": "1.0.2",
-    "@wjmpantig/react-dbml-renderer": "1.0.1",
+    "@wjmpantig/docusaurus-plugin-dbml": "file:..",
+    "@wjmpantig/react-dbml-renderer": "^2.0.0",
     "@xyflow/react": "^12.9.2",
     "clsx": "^2.0.0",
     "prism-react-renderer": "^2.3.0",

@@ -31,7 +31,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "site": "npm run build && npm start -w example",
+    "site:build": "npm run build && npm run build -w example"
   },
   "dependencies": {
     "unist-util-visit": "^5.0.0"
@@ -60,5 +62,9 @@
     "@xyflow/react": "^12.9.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
-  }
+  },
+  "workspaces": [
+    "example"
+  ],
+  "homepage": "https://wjmpantig.github.io/docusaurus-plugin-dbml/"
 }
