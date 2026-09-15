@@ -35,6 +35,9 @@ jobs:
       # the site build alone would not catch it.
       - run: npm run check:dbml
 
+      # Fails here if the release config is broken, rather than at release time.
+      - run: npm run check:release
+
       # The site must demo the plugin in this repo, not the published release.
       # A nested react under example/ means the workspace hoist failed, which
       # shows up as "Invalid hook call" in a browser rather than as a build error.
