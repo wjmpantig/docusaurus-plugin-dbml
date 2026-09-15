@@ -18,7 +18,11 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
+      # Full history and tags: check:release works out the commit range from
+      # the last release tag.
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v7
         with:
@@ -34,6 +38,9 @@ jobs:
       # A schema that fails to parse renders an error box and still builds, so
       # the site build alone would not catch it.
       - run: npm run check:dbml
+
+      # Fails here if the release config is broken, rather than at release time.
+      - run: npm run check:release
 
       # The site must demo the plugin in this repo, not the published release.
       # A nested react under example/ means the workspace hoist failed, which
