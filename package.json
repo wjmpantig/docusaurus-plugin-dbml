@@ -33,7 +33,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "site": "npm run build && npm start -w example",
-    "site:build": "npm run build && npm run build -w example"
+    "site:build": "npm run build && npm run build -w example",
+    "check:dbml": "node scripts/check-dbml.mjs"
   },
   "dependencies": {
     "unist-util-visit": "^5.0.0"

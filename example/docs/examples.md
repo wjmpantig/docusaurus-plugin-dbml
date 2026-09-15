@@ -116,7 +116,7 @@ Ref: users.id - user_profiles.user_id
 Ref: users.id < users.referrer_id
 
 // named, coloured, with a delete action
-Ref fk_order_items_order [color: #79AD51, delete: cascade]: orders.id < order_items.order_id
+Ref fk_order_items_order: orders.id < order_items.order_id [color: #79AD51, delete: cascade]
 
 // documented, not enforced by the database
 Ref: menu_items.id < order_items.menu_item_id [inactive]

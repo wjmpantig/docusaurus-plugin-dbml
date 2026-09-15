@@ -31,6 +31,10 @@ jobs:
 
       - run: npm run build
 
+      # A schema that fails to parse renders an error box and still builds, so
+      # the site build alone would not catch it.
+      - run: npm run check:dbml
+
       # The site must demo the plugin in this repo, not the published release.
       # A nested react under example/ means the workspace hoist failed, which
       # shows up as "Invalid hook call" in a browser rather than as a build error.
