@@ -18,7 +18,11 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
+      # Full history and tags: check:release works out the commit range from
+      # the last release tag.
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v7
         with:

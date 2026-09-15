@@ -14,7 +14,17 @@ const git = (...args) => execFileSync("git", args, { encoding: "utf8" }).trim();
 
 const { preset, tagFormat } = JSON.parse(readFileSync(".releaserc.json", "utf8"));
 const match = tagFormat.replace("${version}", "*");
-const lastTag = git("describe", "--tags", "--match", match, "--abbrev=0");
+
+// No tag means either a first release or, far more likely in CI, a checkout
+// without tags — which would otherwise look like "nothing to release".
+let lastTag;
+try {
+	lastTag = git("describe", "--tags", "--match", match, "--abbrev=0");
+} catch {
+	console.error(`No tag matching "${match}" is reachable from HEAD.`);
+	console.error("If this is CI, the checkout needs fetch-depth: 0.");
+	process.exit(1);
+}
 
 const commits = git("log", "--format=%H%x1f%s%x1f%b%x1e", `${lastTag}..HEAD`)
 	.split("\x1e")
