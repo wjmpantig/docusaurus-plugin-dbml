@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run lint
+
+      - run: npm run build
+
+      # The site must demo the plugin in this repo, not the published release.
+      # A nested react under example/ means the workspace hoist failed, which
+      # shows up as "Invalid hook call" in a browser rather than as a build error.
+      - name: Assert the site uses the local plugin build
+        run: |
+          test ! -d example/node_modules/react
+          node -e "const p = require.resolve('@wjmpantig/docusaurus-plugin-dbml/DbmlDiagram', {paths: ['./example']}); if (p.includes('node_modules')) { console.error('resolved to a published copy: ' + p); process.exit(1); } console.log('local build: ' + p);"
+
+      - run: npm run build -w example
+
+      - uses: actions/configure-pages@v6
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: example/build
+
+  deploy:
+    needs: check
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages-deploy
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
