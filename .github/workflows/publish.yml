@@ -19,7 +19,9 @@ jobs:
           node-version-file: '.nvmrc'
           registry-url: 'https://registry.npmjs.org'
 
-      - run: npm ci
+      # Publishing needs the library's own deps only; example/ is a workspace
+      # and would otherwise pull all of Docusaurus into this job.
+      - run: npm ci --workspaces=false --include-workspace-root
 
       - run: npm run build
 

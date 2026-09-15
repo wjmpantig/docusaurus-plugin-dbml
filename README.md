@@ -1,8 +1,11 @@
 # Docusaurus Dbml Renderer Plugin
 
-This plugin allows you to render Dbml diagrams in your Docusaurus site.
+Render [DBML](https://dbml.dbdiagram.io/docs/) schemas as interactive diagrams in
+your Docusaurus site. Write a fenced code block, get a diagram.
 
 ![Docusaurus Dbml Renderer Preview](./assets/preview.gif)
+
+**[Documentation and live examples →](https://wjmpantig.github.io/docusaurus-plugin-dbml/)**
 
 ## Installation
 
@@ -12,39 +15,32 @@ npm install @wjmpantig/docusaurus-plugin-dbml @wjmpantig/react-dbml-renderer @db
 
 ## Usage
 
-```js
-// docusaurus.config.ts
+Register the remark plugin for each content type you write Markdown in:
 
+```ts
+// docusaurus.config.ts
 import { remarkDbmlToComponent } from '@wjmpantig/docusaurus-plugin-dbml';
 
-export default function config() {
-  return {
-    plugins: [
-      ['@wjmpantig/docusaurus-plugin-dbml'], //add me
+export default {
+  presets: [
+    [
+      'classic',
+      {
+        docs: {
+          sidebarPath: './sidebars.ts',
+          remarkPlugins: [remarkDbmlToComponent], // add me
+        },
+      },
     ],
-    docs: {
-      remarkPlugins: [remarkDbmlToComponent], // add me
-    },
-  };
-}
+  ],
+  plugins: ['@wjmpantig/docusaurus-plugin-dbml'], // optional
+};
 ```
 
-## Options
-
-### Preview height
-
-The default preview height is `500px`. You can change it globally by passing options to `remarkDbmlToComponent`:
-
-```js
-docs: {
-  remarkPlugins: [[remarkDbmlToComponent, { height: 400 }]],
-}
-```
-
-You can also override the height per diagram using the code fence meta string:
+Then write a diagram:
 
 ````md
-```dbml height=600
+```dbml
 Table users {
   id integer [primary key]
   name varchar
@@ -52,18 +48,22 @@ Table users {
 ```
 ````
 
-Both numbers (interpreted as `px`) and CSS string values are accepted:
+## Options
 
-```js
-// numbers
-remarkPlugins: [[remarkDbmlToComponent, { height: 400 }]]
+`height` sets the preview height, `500` by default. Pass it globally
+(`[[remarkDbmlToComponent, { height: 400 }]]`) or per diagram with the fence meta
+(` ```dbml height=600 `). Numbers are pixels; strings are any CSS length.
 
-// CSS strings
-remarkPlugins: [[remarkDbmlToComponent, { height: '50vh' }]]
-```
+Full reference: **[Configuration](https://wjmpantig.github.io/docusaurus-plugin-dbml/docs/configuration)**.
 
-````md
-```dbml height=50vh
-...
-```
-````
+The component can also be [used directly](https://wjmpantig.github.io/docusaurus-plugin-dbml/docs/standalone),
+without a code fence.
+
+## Requirements
+
+Peer dependencies: `@wjmpantig/react-dbml-renderer` v2, `@dbml/core` v10,
+`@xyflow/react` v12, React 19.
+
+## License
+
+MIT
